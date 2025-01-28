@@ -1,0 +1,7 @@
+{
+    "dps_hdf5": "/net/micdata/data2/12IDC/2021_Nov/results/ML_recon/tomo_scan3/scan1650/data_roi0_Ndp512_dp.hdf5",
+    "parameters_hdf5": "/net/micdata/data2/12IDC/2021_Nov/results/ML_recon/tomo_scan3/scan1650/data_roi0_Ndp512_para.hdf5",
+    "recon_mat": "/net/micdata/data2/12IDC/2021_Nov/results/ML_recon/tomo_scan3/scan1650/roi0_Ndp512/MLc_L1_p10_g10_Ndp512_mom0.5_pc0_noModelCon_bg0.01_vp5_vi_mm_ff/Niter500.mat",
+    "diffraction_data": "/net/micdata/data2/12IDC/2021_Nov/ptycho/scan1650/scan1650_master.h5",
+    "cell_info": "/home/beams/PTYCHOSAXS/opt/MIDAS/cellinfo.mat"
+} 
