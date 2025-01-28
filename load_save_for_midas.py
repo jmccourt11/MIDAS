@@ -181,6 +181,36 @@ def extract_parameters(config: Dict[str, str], scan_number: int) -> Dict[str, An
     extracted_data = {}
     
     try:
+        # Load parameters from diffraction data file
+        with h5py.File(config['diffraction_data'], 'r') as f:
+            # Get phi angle from chi
+            extracted_data['phi'] = f['entry']['sample']['goniometer']['chi'][()][0]
+            
+            # Get detector parameters
+            sdd = f['entry']['instrument']['detector']['detector_distance'][()]
+            delta_D = f['entry']['instrument']['detector']['x_pixel_size'][()]
+            
+            extracted_data['sdd'] = sdd
+            extracted_data['delta_D'] = delta_D
+        
+        # Load parameters from parameters HDF5 file
+        with h5py.File(config['parameters_hdf5'], 'r') as f:
+            # Get wavelength
+            extracted_data['wavelength'] = f['lambda'][()][0]
+            
+            # Get Ndp from filename
+            filename = os.path.basename(config['parameters_hdf5'])
+            Ndp = int(filename.split('Ndp')[1].split('_')[0])
+            
+            # Calculate pixel size
+            extracted_data['pixel_size'] = extracted_data['wavelength'] * sdd / (delta_D * Ndp)
+        
+        # Load probe from reconstruction mat file
+        recon_data = sio.loadmat(config['recon_mat'])
+        extracted_data['probe'] = recon_data['probe'].T[0][0].T
+        
+        print("Successfully extracted parameters from all files")
+
         # Add cell information if available
         if 'cell_info' in config:
             print("\nExtracting cell information...")
@@ -196,19 +226,8 @@ def extract_parameters(config: Dict[str, str], scan_number: int) -> Dict[str, An
         peak_filename = f'/net/micdata/data2/12IDC/ptychosaxs/peak_analysis/peak_analysis_scan_{scan_number}.csv'
         if os.path.exists(peak_filename):
             print(f"\nAnalyzing peak data from: {peak_filename}")
-            peak_results = analyze_peak_data(
-                filename=peak_filename,
-                detector_distance=10000,  # Default SDD
-                omega=0,  # Default omega
-                xcenter=256,  # Default center
-                ycenter=256   # Default center
-            )
-            
-            # Add peak analysis results to extracted data
-            extracted_data['peak_coords'] = peak_results['coords']
-            extracted_data['peak_data'] = peak_results['peak_data']
-            extracted_data['peak_figures'] = peak_results['figures']
-            
+            peak_data = pd.read_csv(peak_filename)
+            extracted_data['peak_data'] = peak_data
             print(f"Successfully loaded peak analysis data for scan {scan_number}")
         else:
             print(f"Warning: Peak analysis file not found: {peak_filename}")
@@ -225,6 +244,10 @@ def extract_parameters(config: Dict[str, str], scan_number: int) -> Dict[str, An
 
     except Exception as e:
         print(f"Error extracting parameters: {str(e)}")
+        print("Attempted to access:")
+        print(f"Diffraction data: {config['diffraction_data']}")
+        print(f"Parameters file: {config['parameters_hdf5']}")
+        print(f"Reconstruction file: {config['recon_mat']}")
         raise
     
     return extracted_data
