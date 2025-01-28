@@ -1,0 +1,9 @@
+Reading file: /home/beams0/PTYCHOSAXS/opt/MIDAS/FF_HEDM/Example/LayerNr_1///Radius_StartNr_1_EndNr_1440.csv.
+Number spots per ring: 40 36 65 131 44 
+Number of planes being considered: 5.
+Number of spots: 316.
+Fitting not used. Using intial values for final results.
+Time elapsed: 0.068901 s.
+Indexing filters: RingNr: 2 MinOme: -90.000000 MaxOme: 90.000000 
+nRejects: 0, nIndices: 316, Spots to keep: 316, SpotIDsToIndex: 18
+Time elapsed: 0.088273 s.

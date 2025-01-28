@@ -1,0 +1,42 @@
+
+
+		IndexerOMP v6.0
+Contact hsharma@anl.gov in case of questions about the MIDAS project.
+
+Reading parameters from file: paramstest.txt.
+SpaceGroup: 225
+Finished reading parameters.
+No of hkl's: 58
+Reading binned data from /home/beams0/PTYCHOSAXS/opt/MIDAS/FF_HEDM/Example/LayerNr_1...
+Data.bin read
+nData.bin read
+518400000 4 129600000 
+Binned data read.
+No of bins for rings : 5
+No of bins for eta   : 3600
+No of bins for omega : 3600
+Total no of bins     : 64800000
+
+Finished binning.
+
+Read spots info, nSpots = 18, 50 112
+112
+IDNr: 15, Total: 18, ID: 65, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: 79.545650, time: 2.350028s.
+IDNr: 2, Total: 18, ID: 52, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: -87.454350, time: 2.349319s.
+IDNr: 16, Total: 18, ID: 66, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: 80.795650, time: 2.349793s.
+IDNr: 1, Total: 18, ID: 51, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: -88.704350, time: 2.350861s.
+IDNr: 5, Total: 18, ID: 55, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: -39.433110, time: 2.358810s.
+IDNr: 0, Total: 18, ID: 50, Confidence: 0.991379, nExp: 116.000000, nObs: 115.000000, nPlanes: 1, omega: -89.426680, time: 2.360047s.
+IDNr: 17, Total: 18, ID: 67, Confidence: 0.991379, nExp: 116.000000, nObs: 115.000000, nPlanes: 1, omega: 84.073320, time: 2.361721s.
+IDNr: 14, Total: 18, ID: 64, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: 41.566240, time: 2.364566s.
+IDNr: 12, Total: 18, ID: 62, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: 34.815920, time: 2.366597s.
+IDNr: 4, Total: 18, ID: 54, Confidence: 0.991379, nExp: 116.000000, nObs: 115.000000, nPlanes: 1, omega: -45.683020, time: 2.365892s.
+IDNr: 11, Total: 18, ID: 61, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 1, omega: 34.065760, time: 2.367373s.
+IDNr: 6, Total: 18, ID: 56, Confidence: 0.982759, nExp: 116.000000, nObs: 114.000000, nPlanes: 2, omega: -38.933350, time: 2.401768s.
+IDNr: 13, Total: 18, ID: 63, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 2, omega: 41.066080, time: 2.405562s.
+IDNr: 3, Total: 18, ID: 53, Confidence: 1.000000, nExp: 116.000000, nObs: 116.000000, nPlanes: 2, omega: -46.182780, time: 2.403887s.
+IDNr: 8, Total: 18, ID: 58, Confidence: 0.991379, nExp: 116.000000, nObs: 115.000000, nPlanes: 1, omega: -11.197920, time: 2.411712s.
+IDNr: 10, Total: 18, ID: 60, Confidence: 0.991379, nExp: 116.000000, nObs: 115.000000, nPlanes: 1, omega: 13.552900, time: 2.412917s.
+IDNr: 9, Total: 18, ID: 59, Confidence: 0.991379, nExp: 116.000000, nObs: 115.000000, nPlanes: 1, omega: 5.053220, time: 2.420601s.
+IDNr: 7, Total: 18, ID: 57, Confidence: 0.991379, nExp: 116.000000, nObs: 115.000000, nPlanes: 1, omega: -19.948240, time: 2.421315s.
+Finished, time elapsed: 2.450901 seconds.

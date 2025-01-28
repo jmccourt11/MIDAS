@@ -1,0 +1,37 @@
+usage: ffGenerateZip.py [-h] -resultFolder RESULTFOLDER -paramFN PARAMFN
+                        [-dataFN DATAFN] [-darkFN DARKFN] [-dataLoc DATALOC]
+                        [-numFrameChunks NUMFRAMECHUNKS]
+                        [-preProcThresh PREPROCTHRESH]
+                        [-numFilesPerScan NUMFILESPERSCAN] [-LayerNr LAYERNR]
+                        [-correctSD CORRECTSD]
+
+Code to generate ZarrZip dataset from GE or HDF5 files.
+
+options:
+  -h, --help            show this help message and exit
+  -resultFolder RESULTFOLDER
+                        Folder where you want to save results (default: None)
+  -paramFN PARAMFN      Parameter file name (default: None)
+  -dataFN DATAFN        DataFileName (default: )
+  -darkFN DARKFN        DarkFileName (default: )
+  -dataLoc DATALOC      Location of data in the hdf file (default:
+                        exchange/data)
+  -numFrameChunks NUMFRAMECHUNKS
+                        Number of chunks to use when reading the data file if
+                        RAM is smaller than expanded data. -1 will disable.
+                        (default: -1)
+  -preProcThresh PREPROCTHRESH
+                        If want to save the dark corrected data, then put to
+                        whatever threshold wanted above dark. -1 will disable.
+                        0 will just subtract dark. Negative values will be
+                        reset to 0. (default: -1)
+  -numFilesPerScan NUMFILESPERSCAN
+                        Number of files that constitute a single scan. This
+                        will combine multiple ge files into one dataset. 1
+                        will disable. (default: 1)
+  -LayerNr LAYERNR      LayerNr (default: 1)
+  -correctSD CORRECTSD  If you want to use an automatically computed
+                        threshold, put to 1. It will compute the standard
+                        deviation in the image, apply a threshold of
+                        1.1*sigma. ***** WILL APPLY THIS ABOVE PREPROCTHRESH.
+                        USE WITH CAUTION ***** (default: 0)

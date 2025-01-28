@@ -22,3 +22,7 @@ utils/__pycache__
 */*/__pycache__
 .vscode
 .DS_Store
+*.h5
+FF_HEDM/Example/LayerNr_1/Data.bin
+FF_HEDM/Example/LayerNr_1/nData.bin
+compiled_data.h5

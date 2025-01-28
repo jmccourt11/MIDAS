@@ -1,0 +1,2 @@
+SpotID	IntegratedIntensity	Omega(degrees)	YCen(px)	ZCen(px)	IMax	Radius(px)	Eta(degrees)	SigmaR	SigmaEta	NrPixels	TotalNrPixelsInPeakRegion	nPeaks	maxY	maxZ	diffY	diffZ	rawIMax	returnCode	retVal	BG	SigmaGR	SigmaLR	SigmaGEta	SigmaLEta	MU
+1	47559.046986	149.750000	1847.999722	1506.999829	3750.000000	957.862399	59.579948	9.199328	0.091705	45	45	1	1848	1507	0.000278	0.000171	7500.000000	4	6282.403398	0.000000	9.199328	1.533117	0.066560	0.091705	1.000000

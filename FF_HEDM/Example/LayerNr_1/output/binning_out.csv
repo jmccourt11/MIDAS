@@ -1,0 +1,4 @@
+nRings: 5, nEtas: 3600, nOmes: 3600
+Total bins: 64800000
+Time elapsed in making DataArray: 0.619858 s.
+Total Time elapsed: 1.036072 s.
