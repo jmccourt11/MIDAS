@@ -1,0 +1,29 @@
+LatticeConstant 90.8 90.8 90.8 90 90 90									# Undeformed lattice parameter to start the optimization. (um um um deg deg deg) Please always use ideal values (eg for the angles).
+SpaceGroup 225															# Space group of the material.
+InFileName GrainsSim.csv                                                 # Input Grains.csv file to generate grains.
+OutFileName Au_Nano_Test_ff                                             # FileName to be used for simulation data.
+Lsd 5570000.0000														# Distance between the rotation axis and the detector. (um)
+BC 256 256															# Beam center horizontal and vertical. (px px)
+tx 0																	# Rotation of the detector from ideal position about x-ray beam. (deg)
+ty 0																	# Rotation of the detector from ideal position about the horizontal axis towards the door. (deg)
+tz 0																	# Rotation of the detector from ideal position about the vertical axis up. (deg)
+p0 0																	# Detector distortion parameter.
+p1 0																	# Detector distortion parameter.
+p2 0																	# Detector distortion parameter.
+Wedge 0																	# Deviation from 90 degrees between the rotation axis and the incoming X-ray beam.
+RhoD 19200                                                             # Maximum ring radius / reach for detector distortion.
+OmegaStep 0.5                                                         # Rotation step. (deg)
+Wavelength 1.24                                                      # Wavelength of monochromatic beam (Angstrom).
+NrPixels 512                                                           # Number of pixels, assuming a square detector.
+px 75                                                                  # Pixel size of square shaped pixels (microns).
+RingThresh 1 10															# Ring number and threshold for the ring to be used in analysis.
+RingThresh 2 10															# Ring number and threshold for the ring to be used in analysis.
+RingThresh 3 10															# Ring number and threshold for the ring to be used in analysis.
+RingThresh 4 10															# Ring number and threshold for the ring to be used in analysis.
+RingThresh 5 10															# Ring number and threshold for the ring to be used in analysis.
+GaussWidth 1                                                            # Width of Gaussian peak in pixels for simulating a diffraction spot.
+OmegaStart 180                                                          # Omega of the first frame. (deg)
+OmegaEnd -180                                                           # Omega of the last frame. (deg)
+PeakIntensity 2000                                                      # Amplitude of the simulated peaks. This is rescaled to maximize the dynamic range of the simulation. (counts)
+WriteSpots 1                                                            # 1 if you want to write the diffraction spots associated with each orientation provided. Saved to SpotMatrixGen.csv file.
+nScans 1
