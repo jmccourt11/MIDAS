@@ -58,7 +58,7 @@ main(int argc, char *argv[])
         thisF = fopen(thisFN,"r");
         fgets(thisLine,2048,thisF);
         sprintf(headThis,"%s",thisLine);
-        int nAll=0;
+        size_t nAll=0;
         while (fgets(thisLine,2048,thisF)!=NULL){
             sscanf(thisLine,"%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
                 &allSpots[nAll*14+0],&allSpots[nAll*14+1],&allSpots[nAll*14+2],
@@ -71,9 +71,14 @@ main(int argc, char *argv[])
         }
         fclose(thisF);
         int scanNr, thisScanNr;
-        int i,j,k, found;
+        int i,j,k,l,found;
         double origWeight, newWeight;
+        int nSpotsLastScan;
+        int *lastScansSpots, *thisScansSpots;
+        lastScansSpots = calloc(MAX_N_SPOTS,sizeof(*lastScansSpots));
+        thisScansSpots = calloc(MAX_N_SPOTS,sizeof(*thisScansSpots));
         for (scanNr=1;scanNr<nMerges;scanNr++){
+            printf("ScanNr: %d, nAll: %zu\n",scanNr,nAll);
             thisScanNr = startScanNr + scanNr;
             thisPosition += positions[thisScanNr];
             int nThis = 0;
@@ -91,10 +96,12 @@ main(int argc, char *argv[])
                 nThis++;
             }
             fclose(thisF);
+            nSpotsLastScan = nThis;
             // Go through each spot in both files, if found a match add weighted values, if not, add to the original array
             for (i=0;i<nThis;i++){
                 found = 0;
-                for (j=0;j<nAll;j++){
+                for (l=0;l<nSpotsLastScan;l++){
+                    j = lastScansSpots[l];
                     if (fabs(thisSpots[i*14+5] - allSpots[j*14+5])<0.01){
                         if (fabs(thisSpots[i*14+0] - allSpots[j*14+0])<tolPx){
                             if (fabs(thisSpots[i*14+1] - allSpots[j*14+1])<tolPx){
@@ -102,6 +109,7 @@ main(int argc, char *argv[])
                                     found = 1;
                                     origWeight = allSpots[j*14+3];
                                     newWeight = thisSpots[i*14+3];
+                                    thisScansSpots[i] = j;
                                     for (k=0;k<14;k++) {
                                         allSpots[j*14+k] = (allSpots[j*14+k]*origWeight + thisSpots[i*14+k]*newWeight)/(origWeight+newWeight);
                                     }
@@ -111,10 +119,12 @@ main(int argc, char *argv[])
                     }
                 }
                 if (found == 0){
+                    thisScansSpots[i] = nAll;
                     for (j=0;j<14;j++) allSpots[nAll*14+j] = thisSpots[i*14+j];
                     nAll++;
                 }
             }
+            for (i=0;i<nSpotsLastScan;i++) lastScansSpots[i] = thisScansSpots[i];
         }
         for (i=0;i<nAll;i++) allSpots[i*14+4] = i+1;
         sprintf(thisFN,"InputAllExtraInfoFittingAll%d.csv",finScanNr);

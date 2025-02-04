@@ -124,7 +124,7 @@ for line in lines:
     if line.startswith('Padding '):
         pad = int(line.split()[1])
     if line.startswith('MaskFN '):
-        maskFN = int(line.split()[1])
+        maskFN = line.split()[1]
     if line.startswith('Ext '):
         ext = line.split()[1]
     if line.startswith('HeadSize '):
@@ -321,6 +321,8 @@ dark[:] = darkData
 bright[:]=brightData
 if len(maskFN) > 0:
     maskData = np.array(Image.open(maskFN)).astype(np.uint16)
+    maskData = maskData.reshape((1,numZ,numY))
+    print(maskData.shape)
     mask = exc.create_dataset('mask',shape=maskData.shape,dtype=np.uint16,chunks=(1,numZ,numY),compressor=compressor)
     mask[:] = maskData
 

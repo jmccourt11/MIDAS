@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+##### Save all the plots to an hdf5
+
 import warnings
 warnings.filterwarnings("ignore")
 import numpy as np
@@ -256,6 +258,10 @@ data2 = dip.MedianFilter(data,101)
 data2 = dip.MedianFilter(data,101)
 print('Finished with median, now processing data.')
 data = data.astype(float)
+if DrawPlots==1:
+	plt.imshow(np.log(data2))
+	plt.colorbar()
+	plt.show()
 data_corr = data - data2
 if threshold == 0:
 	threshold = 100*(1+np.std(data_corr)//100)

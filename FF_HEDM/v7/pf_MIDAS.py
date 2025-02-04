@@ -52,7 +52,7 @@ def generateZip(resFol,pfn,layerNr,dfn='',dloc='',nchunks=-1,preproc=-1,outf='Zi
 def parallel_peaks(layerNr,positions,startNrFirstLayer,nrFilesPerSweep,topdir,
 				   paramContents,baseNameParamFN,ConvertFiles,nchunks,preproc,
 				   env,doPeakSearch,numProcs,startNr,endNr,Lsd,NormalizeIntensities,
-				   omegaValues,minThresh,fStem,omegaFF):
+				   omegaValues,minThresh,fStem,omegaFF,Ext):
 	import subprocess
 	import numpy as np
 	import time
@@ -97,7 +97,7 @@ def parallel_peaks(layerNr,positions,startNrFirstLayer,nrFilesPerSweep,topdir,
 	if ConvertFiles==1:
 		outFStem = generateZip(thisDir,baseNameParamFN,layerNr,nchunks=nchunks,preproc=preproc)
 	else:
-		outFStem = f'{thisDir}/{fStem}_{str(thisStartNr).zfill(6)}.MIDAS.zip'
+		outFStem = f'{thisDir}/{fStem}_{str(thisStartNr).zfill(6)}{Ext}'
 	print(f'FileStem: {outFStem}')
 	f = open(f'{sub_logDir}/processing_out0.csv','w')
 	f_err = open(f'{sub_logDir}/processing_err0.csv','w')
@@ -105,7 +105,7 @@ def parallel_peaks(layerNr,positions,startNrFirstLayer,nrFilesPerSweep,topdir,
 	if doPeakSearch==1:
 		t_st = time.time()
 		print(f'Doing PeakSearch.')
-		cmd = os.path.expanduser('~/opt/MIDAS/FF_HEDM/bin/PeaksFittingOMPZarr') + f' {outFStem} 0 1 {numProcs} {thisDir}'
+		cmd = os.path.expanduser('~/opt/MIDAS/FF_HEDM/bin/PeaksFittingOMPZarr') + f' {outFStem} 0 1 {numProcs} {thisDir} 0' ### THIS IS DOING DUMB PEAKSEARCH!!!!!!!!!
 		subprocess.call(cmd,shell=True,env=env,stdout=f,stderr=f_err)
 		print(f'PeakSearch Done. Time taken: {time.time()-t_st} seconds.')
 	subprocess.call(os.path.expanduser("~/opt/MIDAS/FF_HEDM/bin/MergeOverlappingPeaksAllZarr")+f' {outFStem} {thisDir}',env=env,shell=True,stdout=f,stderr=f_err)
@@ -418,7 +418,7 @@ if doPeakSearch == 1 or doPeakSearch==-1:
 	for layerNr in range(startScanNr,nScans+1):
 		res.append(parallel_peaks(layerNr,positions,startNrFirstLayer,nrFilesPerSweep,topdir,paramContents,baseNameParamFN,
 							ConvertFiles,nchunks,preproc,env,doPeakSearch,numProcs,startNr,endNr,Lsd,NormalizeIntensities,
-							omegaValues,minThresh,fStem,omegaFF))
+							omegaValues,minThresh,fStem,omegaFF,Ext))
 	outputs = [i.result() for i in res]
 	print(f'Peaksearch done on {nNodes} nodes.')
 else:
