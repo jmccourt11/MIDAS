@@ -53,7 +53,7 @@ def transform_coordinates(xorig: np.ndarray,
     two_theta = np.arctan2(r, detector_distance)
     eta = np.arctan2(y, x)
     
-    # Calculate lab frame coordinates
+    # Calculate lab frame coordinates using correct transformations
     XLab = detector_distance * np.sin(two_theta) * np.cos(eta)
     YLab = detector_distance * np.sin(two_theta) * np.sin(eta)
     ZLab = detector_distance * np.cos(two_theta)
